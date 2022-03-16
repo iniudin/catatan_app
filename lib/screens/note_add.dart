@@ -13,6 +13,13 @@ class _NoteAddState extends State<NoteAdd> {
   TextEditingController descriptionController = TextEditingController();
 
   @override
+  void dispose() {
+    titleController.dispose();
+    descriptionController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

@@ -4,9 +4,9 @@ import 'package:notes_app/model/note.dart';
 import '../utils/dateformat.dart';
 
 class NoteDetail extends StatelessWidget {
-  Note noteItem;
+  final Note noteItem;
 
-  NoteDetail({
+  const NoteDetail({
     Key? key,
     required this.noteItem,
   }) : super(key: key);

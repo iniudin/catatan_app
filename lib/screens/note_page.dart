@@ -22,13 +22,6 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Catatan"),
-        actions: [
-          IconButton(
-              onPressed: () {
-                _refreshTodo();
-              },
-              icon: const Icon(Icons.refresh))
-        ],
       ),
       body: SafeArea(
         child: noteList.isNotEmpty
@@ -43,7 +36,8 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const NoteAdd()));
+                  MaterialPageRoute(builder: (context) => const NoteAdd()))
+              .then((value) => _refreshTodo());
         },
         child: const Icon(Icons.add),
       ),
