@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:notes_app/model/note.dart';
 import 'package:notes_app/screens/note_add.dart';
 import 'package:notes_app/screens/note_detail.dart';
+import 'package:notes_app/screens/note_list.dart';
 import 'package:notes_app/utils/dateformat.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,7 +13,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // function that rebuild listview
+  /// function that rebuild listview
   void _refreshTodo() {
     setState(() {});
   }
@@ -28,7 +29,9 @@ class _HomePageState extends State<HomePage> {
             ? ListView.builder(
                 itemCount: noteList.length,
                 itemBuilder: ((context, index) {
-                  return _buildRow(noteList[index]);
+                  return NoteList(
+                    note: noteList[index],
+                  );
                 }),
               )
             : const Center(child: Text("Catatan kosong")),
@@ -40,18 +43,6 @@ class _HomePageState extends State<HomePage> {
               .then((value) => _refreshTodo());
         },
         child: const Icon(Icons.add),
-      ),
-    );
-  }
-
-  Widget _buildRow(Note note) {
-    return ListTile(
-      title: Text(note.title),
-      subtitle: Text(note.description),
-      trailing: Text(dateTimeParse(note.lastUpdate)),
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => NoteDetail(noteItem: note)),
       ),
     );
   }
